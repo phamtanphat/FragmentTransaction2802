@@ -1,4 +1,19 @@
 package khoapham.ptp.phamtanphat.fragmenttransaction2802;
 
-public class IosFragment {
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+public class IosFragment extends Fragment {
+    View view;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_ios,container,false);
+        return view;
+    }
 }

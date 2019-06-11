@@ -9,6 +9,7 @@ import android.view.View;
 
 public abstract class BaseActivity extends AppCompatActivity implements ListtenView{
 
+    //mvvm
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,5 +22,4 @@ public abstract class BaseActivity extends AppCompatActivity implements ListtenV
     public View getView(){
         return getWindow().getDecorView();
     }
-
 }

@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity  {
 
     FragmentManager fragmentManager = getSupportFragmentManager();
     Button btnReplaceAndroid,btnReplaceios, btnAddAndroid,btnAddios,btnRemoveAndroid,btnRemoveios,btnPopbackstach,btnAttach,btnDetach;
@@ -30,7 +30,6 @@ public class MainActivity extends BaseActivity {
         btnDetach = v.findViewById(R.id.buttonDetach);
         btnRemoveAndroid = v.findViewById(R.id.buttonRemoveAndroid);
         btnRemoveios = v.findViewById(R.id.buttonRemoveios);
-
     }
 
     @Override
@@ -52,8 +51,20 @@ public class MainActivity extends BaseActivity {
                 addIos();
             }
         });
-
+        btnReplaceAndroid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceAndroid();
+            }
+        });
+        btnReplaceios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceIos();
+            }
+        });
     }
+
     public void addAndroid(){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         AndroidFragment androidFragment = new AndroidFragment();
@@ -64,6 +75,18 @@ public class MainActivity extends BaseActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         IosFragment iosFragment = new IosFragment();
         fragmentTransaction.add(R.id.relativelayout,iosFragment);
+        fragmentTransaction.commit();
+    }
+    public void replaceAndroid(){
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        AndroidFragment androidFragment = new AndroidFragment();
+        fragmentTransaction.replace(R.id.relativelayout,androidFragment);
+        fragmentTransaction.commit();
+    }
+    public void replaceIos() {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        IosFragment iosFragment = new IosFragment();
+        fragmentTransaction.replace(R.id.relativelayout,iosFragment);
         fragmentTransaction.commit();
     }
 }

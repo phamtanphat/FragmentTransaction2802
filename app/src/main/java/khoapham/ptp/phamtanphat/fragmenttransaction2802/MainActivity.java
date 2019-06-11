@@ -75,18 +75,39 @@ public class MainActivity extends BaseActivity  {
                 removeios();
             }
         });
+        btnPopbackstach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fragmentManager.popBackStack();
+            }
+        });
+        btnAttach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Attach();
+            }
+        });
+        btnDetach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dettach();
+            }
+        });
     }
 
     public void addAndroid(){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         AndroidFragment androidFragment = new AndroidFragment();
         fragmentTransaction.add(R.id.relativelayout,androidFragment,"fragmentandroid");
+        fragmentTransaction.addToBackStack("FragmentAndroid");
+        fragmentTransaction.attach(androidFragment);
         fragmentTransaction.commit();
     }
     public void addIos(){
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         IosFragment iosFragment = new IosFragment();
         fragmentTransaction.add(R.id.relativelayout,iosFragment,"fragmentanios");
+        fragmentTransaction.addToBackStack("Fragmentios");
         fragmentTransaction.commit();
     }
     public void replaceAndroid(){
@@ -117,6 +138,23 @@ public class MainActivity extends BaseActivity  {
             fragmentTransaction.remove(iosFragment);
             fragmentTransaction.commit();
         }
+    }
+    public void Attach(){
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        AndroidFragment androidFragment = (AndroidFragment) fragmentManager.findFragmentByTag("fragmentandroid");
+        if (androidFragment!= null){
+            fragmentTransaction.attach(androidFragment);
+            fragmentTransaction.commit();
+        }
+    }
+    public void Dettach(){
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        AndroidFragment androidFragment = (AndroidFragment) fragmentManager.findFragmentByTag("fragmentandroid");
+        if (androidFragment!= null){
+            fragmentTransaction.detach(androidFragment);
+            fragmentTransaction.commit();
+        }
 
     }
+
 }

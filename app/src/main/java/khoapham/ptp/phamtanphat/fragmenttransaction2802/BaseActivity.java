@@ -21,4 +21,5 @@ public abstract class BaseActivity extends AppCompatActivity implements ListtenV
     public View getView(){
         return getWindow().getDecorView();
     }
+
 }
